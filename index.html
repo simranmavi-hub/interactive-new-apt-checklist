@@ -3,46 +3,55 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>College Move‑In & Grocery — High‑Protein Interactive Checklist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b1320" />
+<title>College Move‑In & Grocery — High‑Protein (Mobile‑Optimized)</title>
 <style>
   :root{
     --bg:#0b1320; --card:#121a2b; --muted:#94a3b8; --text:#e6eefc; --accent:#6ee7b7; --accent2:#60a5fa; --danger:#f87171; --hp:#22c55e;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:linear-gradient(180deg,#0b1320,#0d172a);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
-  header{position:sticky;top:0;background:rgba(11,19,32,.9);backdrop-filter:saturate(150%) blur(6px);z-index:5;border-bottom:1px solid #1f2a44}
-  .wrap{max-width:1000px;margin:0 auto;padding:16px}
-  h1{margin:0;font-size:1.2rem}
-  .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+  html,body{height:100%}
+  body{margin:0;background:linear-gradient(180deg,#0b1320,#0d172a);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%;}
+  a{color:var(--accent2)}
+  header{position:sticky;top:0;background:rgba(11,19,32,.92);/* backdrop-filter can cause issues on some mobile browsers */backdrop-filter:saturate(140%) blur(4px);z-index:5;border-bottom:1px solid #1f2a44}
+  .wrap{max-width:980px;margin:0 auto;padding:16px}
+  h1{margin:0 0 6px;font-size:1.05rem}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
   button,.chip,input,select,label.toggle{border:1px solid #26314f;background:#0f1a30;color:var(--text);border-radius:10px;padding:10px 12px;cursor:pointer}
   button:hover{background:#14203a}
   button.acc{border-color:#1f3b2d;background:#0f1f1a}
   button.warn{border-color:#41272a;background:#1f1012;color:#ffd6d6}
-  input[type="search"], select{width:220px}
-  .hp-toggle{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;border:1px solid #1e2e4f;background:#0d182f}
-  .hp-toggle input{accent-color:var(--hp)}
+  input[type="search"], select{width:220px; min-height:44px}
   main{padding:16px}
+
   .section{background:var(--card);border:1px solid #1f2a44;border-radius:14px;margin:14px 0;overflow:hidden}
-  .section header{position:relative;background:#0f1730;border-bottom:1px solid #1f2a44}
-  .section header .title{display:flex;align-items:center;gap:10px}
-  .badge{font-size:.75rem;color:#9fb3d3;border:1px solid #2a385b;padding:2px 8px;border-radius:50px}
-  .hp-badge{border-color:#1f3b2d;color:#b7f7d8}
   details{padding:0}
-  summary{list-style:none;padding:14px 16px;cursor:pointer}
+  summary{list-style:none;padding:12px 14px;cursor:pointer}
   summary::-webkit-details-marker{display:none}
-  .items{padding:10px 14px 16px}
-  ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}
-  li{display:flex;align-items:center;gap:8px;background:#111b31;border:1px solid #1f2a44;padding:10px;border-radius:10px;position:relative}
+  .title{display:flex;align-items:center;gap:10px}
+  .badge{font-size:.75rem;color:#9fb3d3;border:1px solid #2a385b;padding:2px 8px;border-radius:999px}
+  .hp-badge{border-color:#1f3b2d;color:#b7f7d8}
+
+  .items{padding:8px 12px 14px}
+  ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  @media (max-width:700px){ ul{grid-template-columns:1fr;} }
+
+  li{display:flex;align-items:center;gap:10px;background:#111b31;border:1px solid #1f2a44;padding:12px;border-radius:10px}
   li.hp{border-color:#1f3b2d; box-shadow:0 0 0 1px rgba(34,197,94,.15) inset}
-  .name{flex:1}
-  .qty{width:120px;padding:8px;border-radius:8px;border:1px solid #2a3758;background:#0d1426;color:var(--text)}
+  input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent2);flex:0 0 auto}
+  .name{flex:1;min-width:0}
+  .qty{width:140px;max-width:45%;padding:10px;border-radius:8px;border:1px solid #2a3758;background:#0d1426;color:var(--text)}
   .progress{margin-left:auto}
-  .footer{color:var(--muted);font-size:.85rem;margin-top:4px}
+  .footer{color:var(--muted);font-size:.9rem;margin-top:6px}
   .pill{font-size:.75rem;color:#a5b4fc;border:1px dashed #37427a;padding:2px 8px;border-radius:999px}
   .add-row{display:flex;gap:8px;margin-top:10px}
-  .add-row input{flex:1}
+  .add-row input{flex:1;min-height:44px}
+  .notice{background:#1a243f;border:1px solid #2b3a66;color:#c7d2fe;padding:10px 12px;border-radius:10px;margin:10px 0}
+
+  /* Mobile-specific tweaks */
   @media (max-width:540px){
+    header{backdrop-filter:none} /* reduce rendering glitches */
     input[type="search"], select{width:100%}
     .toolbar{flex-direction:column;align-items:stretch}
     .progress{margin-left:0}
@@ -52,106 +61,89 @@
 <body>
   <header>
     <div class="wrap">
-      <h1>College Move‑In & Grocery — <span style="color:var(--accent)">High‑Protein</span> Interactive Checklist</h1>
+      <h1>College Move‑In & Grocery — <span style="color:var(--accent)">High‑Protein</span> (Mobile‑Optimized)</h1>
+      <div id="nostorage" class="notice" style="display:none">⚠️ Your browser is not allowing local save for this page (Private mode or storage disabled). Progress will reset when you close the tab.</div>
       <div class="toolbar">
-        <input id="search" type="search" placeholder="Search items (e.g., greek yogurt, lamp, detergent)…" />
-        <select id="filter">
+        <input id="search" type="search" inputmode="search" placeholder="Search items (e.g., greek yogurt, lamp, detergent)…" />
+        <select id="filter" aria-label="Show">
           <option value="all">Show: All</option>
           <option value="home">Home setup only</option>
           <option value="grocery">Groceries only</option>
           <option value="hp">High‑protein focused</option>
         </select>
-        <label class="hp-toggle"><input type="checkbox" id="hpOnly"> Show only high‑protein items</label>
-        <label class="hp-toggle"><input type="checkbox" id="hpHighlight" checked> Highlight high‑protein</label>
-        <button id="expandAll">Expand all</button>
-        <button id="collapseAll">Collapse all</button>
-        <button id="checkAll">Check all visible</button>
-        <button id="uncheckAll">Uncheck all visible</button>
-        <button id="reset" class="warn">Reset (clear saved)</button>
-        <button id="export" class="acc">Export</button>
-        <label class="toggle"><input type="file" id="import" accept="application/json" style="display:none">Import</label>
-        <div class="progress" id="progress">0 of 0 checked</div>
+        <label class="toggle"><input type="checkbox" id="hpOnly"> Show only high‑protein</label>
+        <label class="toggle"><input type="checkbox" id="hpHighlight" checked> Highlight high‑protein</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button id="expandAll">Expand all</button>
+          <button id="collapseAll">Collapse all</button>
+          <button id="checkAll">Check visible</button>
+          <button id="uncheckAll">Uncheck visible</button>
+          <button id="reset" class="warn">Reset</button>
+          <button id="export" class="acc">Export</button>
+          <label class="toggle">Import<input type="file" id="import" accept="application/json" style="display:none"></label>
+          <div class="progress" id="progress">0 of 0 checked</div>
+        </div>
       </div>
     </div>
   </header>
+
   <main class="wrap">
     <div id="container"></div>
-    <div class="footer">💡 Progress autosaves to your browser. Use <span class="pill">Export</span> to move your checklist to another device, then <span class="pill">Import</span> there.</div>
+    <div class="footer">💡 Tip: Add this to your Home Screen for an app‑like experience. iPhone/iPad (Safari): Share ▸ <em>Add to Home Screen</em>. Android (Chrome): ⋮ menu ▸ <em>Add to Home screen</em>.</div>
   </main>
-<script>
-const STORAGE_KEY = 'college_movein_checklist_v2_hp';
 
-/**
- * Items can be strings or objects: { name: 'Greek yogurt', hp: true }
- * "hp" tags will enable highlighting and filtering for high‑protein preference.
- */
+<script>
+const STORAGE_KEY = 'college_movein_checklist_v2_hp_mobilefix';
+
+function storageAvailable(){
+  try{ const x='__test__'; localStorage.setItem(x,'1'); localStorage.removeItem(x); return true; }catch(e){ return false; }
+}
+const HAS_STORAGE = storageAvailable();
+if(!HAS_STORAGE){ document.getElementById('nostorage').style.display='block'; }
+
+/** Item model: string or { name:'Greek yogurt', hp:true } */
 const DATA = [
   {cat:'home', section:'Essentials & Documents', items:[
     'Student ID', "Driver's license / Passport", 'Lease agreement (copies)', "Renter's insurance details", 'Health insurance card', 'Emergency contacts', 'Campus map & class schedule']},
-
   {cat:'home', section:'Kitchen Basics', items:[
     'Dish soap', 'Sponge / scrubber', 'Dish towels', 'Trash bags', 'Food storage containers', 'Basic spices (salt, pepper)', 'Cooking oil (olive/neutral)', 'Condiments (ketchup/mustard/mayo)', 'Coffee maker or kettle', 'Reusable water bottle', 'Paper towels']},
-
   {cat:'home', section:'Bedroom', items:[
     'Extra sheets & pillowcases', 'Mattress protector', 'Extra pillows', 'Laundry basket/hamper', 'Hangers', 'Under‑bed storage bins']},
-
   {cat:'home', section:'Bathroom', items:[
     'Bath, hand & face towels', 'Shower curtain & rings', 'Bath mat', 'Toiletries (soap, shampoo, toothpaste)', 'Toilet brush & cleaner', 'Plunger', 'Small trash can']},
-
   {cat:'home', section:'Cleaning Supplies', items:[
     'Multi‑surface cleaner', 'Disinfectant wipes', 'Broom & dustpan', 'Mop / Swiffer', 'Vacuum (if carpeted)', 'Laundry detergent', 'Dryer sheets (or wool balls)']},
-
   {cat:'home', section:'Tech & Study Gear', items:[
     'Laptop & charger', 'Surge protector', 'Extension cord', 'Desk lamp', 'Headphones', 'USB drive / external drive', 'Printer (optional)']},
-
   {cat:'home', section:'Comfort & Personal Touch', items:[
     'Throw blanket', 'Photos/posters', 'Small plants', 'Air freshener']},
-
   {cat:'home', section:'First Aid & Safety', items:[
     'First aid kit', 'Flashlight', 'Basic toolkit (screwdriver, hammer, tape measure)', 'Batteries']},
 
-  // Grocery base
+  // Grocery
   {cat:'grocery', section:'Grocery — Pantry Staples', qty:true, items:[
     'Rice', 'Pasta', 'Marinara (jarred)', {name:'Canned beans (black/chickpea/kidney)', hp:true}, 'Canned tomatoes (diced/crushed)', {name:'Canned tuna/salmon', hp:true}, 'Peanut butter or almond butter', 'Oats (quick or rolled)', 'Tortillas', 'Bread', 'Olive oil', 'Neutral cooking oil', 'Soy sauce/tamari', 'Hot sauce / sriracha', 'Vinegar (white or apple cider)', 'Broth/stock (cubes or carton)', 'Foil / zip bags / containers']},
-
   {cat:'grocery', section:'Grocery — Fridge Essentials', qty:true, items:[
     {name:'Eggs (dozen)', hp:true}, {name:'Egg whites (carton)', hp:true}, 'Milk or plant milk', {name:'Greek yogurt (plain)', hp:true}, {name:'Cottage cheese', hp:true}, {name:'Cheese (block or shredded)', hp:true}, 'Butter or spread', 'Onions', 'Garlic', 'Bell peppers', 'Carrots', 'Broccoli or green beans', 'Greens (spinach/mixed)', 'Tomatoes', 'Bananas', 'Apples', 'Berries (fresh or frozen)', {name:'Chicken (thighs/breasts)', hp:true}, {name:'Ground turkey (93% lean) or beef (90%+)', hp:true}, {name:'Tofu or tempeh', hp:true}, {name:'Chicken sausage (pre‑cooked)', hp:true} ]},
-
   {cat:'grocery', section:'Grocery — Freezer Basics', qty:true, items:[
     'Frozen mixed vegetables', 'Frozen fruit (berries/mango)', {name:'Frozen shrimp or fish fillets', hp:true}, {name:'Frozen edamame', hp:true}, 'Frozen dumplings or ravioli']},
-
   {cat:'grocery', section:'Grocery — Condiments & Flavor', qty:true, items:[
     'Ketchup', 'Mustard', 'Mayonnaise', 'BBQ or teriyaki sauce', 'Salsa', 'Pesto (optional)', 'Lemon/lime juice (bottled)']},
-
   {cat:'grocery', section:'Grocery — Spices (Starter Set)', qty:true, items:[
     'Salt', 'Black pepper', 'Garlic powder', 'Paprika (smoked optional)', 'Chili powder or red pepper flakes', 'Italian seasoning / oregano & basil', 'Cumin', 'Cinnamon']},
-
   {cat:'grocery', section:'Grocery — Breakfast & Snacks', qty:true, items:[
     {name:'Protein bars (low sugar)', hp:true}, {name:'Jerky (beef/turkey/salmon)', hp:true}, {name:'Protein powder (whey/plant)', hp:true}, {name:'String cheese or cheese sticks', hp:true}, 'Granola/cereal', 'Nuts or trail mix', 'Hummus', 'Crackers or pita', 'Baby carrots', 'Popcorn (kernels or microwave)', 'Dark chocolate']},
-
-  // High‑protein add‑ons / swaps
   {cat:'grocery', hpSection:true, section:'High‑Protein Add‑Ons & Swaps', qty:true, items:[
-    {name:'Chickpea or lentil pasta', hp:true}, {name:'Protein‑enriched pasta', hp:true}, {name:'Quinoa', hp:true}, {name:'Lentils (dry or canned)', hp:true}, {name:'Seitan', hp:true}, {name:'Low‑fat fairlife/ultra‑filtered milk', hp:true}, {name:'High‑protein tortillas or wraps', hp:true}, {name:'High‑protein bread', hp:true}, {name:'Canned chicken', hp:true}, {name:'Smoked salmon', hp:true} ]},
-
+    {name:'Chickpea or lentil pasta', hp:true}, {name:'Protein‑enriched pasta', hp:true}, {name:'Quinoa', hp:true}, {name:'Lentils (dry or canned)', hp:true}, {name:'Seitan', hp:true}, {name:'Ultra‑filtered milk (low‑fat)', hp:true}, {name:'High‑protein tortillas or wraps', hp:true}, {name:'High‑protein bread', hp:true}, {name:'Canned chicken', hp:true}, {name:'Smoked salmon', hp:true} ]},
   {cat:'grocery', hpSection:true, section:'Quick High‑Protein Meal Builders', items:[
     {name:'Pre‑cooked grilled chicken strips', hp:true}, {name:'Rotisserie chicken (debone & portion)', hp:true}, {name:'Microwaveable rice cups + tuna/edamame', hp:true}, {name:'Egg bites (store‑bought or homemade)', hp:true}, {name:'Greek yogurt + fruit + peanut butter', hp:true} ]}
 ];
 
-function normItem(item){
-  if(typeof item === 'string') return {name:item, hp:false};
-  return {hp:false, qty:false, ...item};
-}
+function normItem(item){ return (typeof item==='string')? {name:item, hp:false}: {hp:false, qty:false, ...item}; }
+function uid(section, name){ return section+"::"+name.replace(/\s+/g,'_').toLowerCase(); }
 
-function uid(section, name){
-  return section+"::"+name.replace(/\s+/g,'_').toLowerCase();
-}
-
-function loadState(){
-  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){ return {}; }
-}
-function saveState(state){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
+function loadState(){ if(!HAS_STORAGE) return {}; try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){ return {}; } }
+function saveState(s){ if(HAS_STORAGE){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } }
 
 const state = loadState();
 
@@ -167,137 +159,99 @@ function render(){
 
   DATA.forEach(block =>{
     if(filter!=='all' && filter!=='hp' && block.cat!==filter) return;
+    if(filter==='hp' && block.cat==='home') return; // hide home for hp focus
 
-    // For the hp filter, we still show all grocery sections but items filtered; show home only if filter=='home'
-    if(filter==='hp' && block.cat==='home') return; // hide home when hp focused
-
-    const sec = document.createElement('div');
-    sec.className='section';
-
-    const details = document.createElement('details');
-    details.open = true;
+    const sec = document.createElement('div'); sec.className='section';
+    const details = document.createElement('details'); details.open=true;
 
     const summary = document.createElement('summary');
     const hdr = document.createElement('div'); hdr.className='title';
     const h = document.createElement('strong'); h.textContent = block.section;
     const badge = document.createElement('span'); badge.className='badge'; badge.textContent = (block.cat==='grocery'?'Groceries':'Home');
-    if(block.hpSection) { const hb=document.createElement('span'); hb.className='badge hp-badge'; hb.textContent='High‑Protein'; hdr.appendChild(hb); }
-    hdr.appendChild(h); hdr.appendChild(badge);
-    summary.appendChild(hdr);
+    if(block.hpSection){ const hb=document.createElement('span'); hb.className='badge hp-badge'; hb.textContent='High‑Protein'; hdr.appendChild(hb); }
+    hdr.appendChild(h); hdr.appendChild(badge); summary.appendChild(hdr);
 
     const itemsDiv = document.createElement('div'); itemsDiv.className='items';
     const ul = document.createElement('ul');
 
     block.items.forEach(raw=>{
-      const it = normItem(raw);
-      const name = it.name;
-      if(term && !name.toLowerCase().includes(term)) return; // search filter
-      if(hpOnly && !it.hp) return; // high‑protein filter
+      const it = normItem(raw); const name = it.name;
+      if(term && !name.toLowerCase().includes(term)) return;
+      if(hpOnly && !it.hp) return;
 
       const id = uid(block.section, name);
-      const li = document.createElement('li');
-      if(hpHighlight && it.hp) li.classList.add('hp');
+      const li = document.createElement('li'); if(hpHighlight && it.hp) li.classList.add('hp');
 
-      const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.dataset.id=id;
-      if(state[id]?.checked) cb.checked = true;
-      cb.addEventListener('change',()=>{ state[id] = state[id]||{}; state[id].checked = cb.checked; saveState(state); updateProgress(); });
+      const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.dataset.id=id; if(state[id]?.checked) cb.checked=true;
+      cb.addEventListener('change',()=>{ state[id]=state[id]||{}; state[id].checked=cb.checked; saveState(state); updateProgress(); });
 
-      const label = document.createElement('label'); label.className='name'; label.htmlFor=id; label.textContent=name + (it.hp?' — protein': '');
+      const label = document.createElement('label'); label.className='name'; label.htmlFor=id; label.textContent=name + (it.hp?' — protein':'');
 
       li.appendChild(cb); li.appendChild(label);
 
       if(block.qty){
         const qty = document.createElement('input'); qty.className='qty'; qty.placeholder='qty (e.g., 2 lb)'; qty.value = state[id]?.qty||'';
-        qty.addEventListener('input',()=>{ state[id] = state[id]||{}; state[id].qty = qty.value; saveState(state); });
+        qty.addEventListener('input',()=>{ state[id]=state[id]||{}; state[id].qty = qty.value; saveState(state); });
         li.appendChild(qty);
       }
 
       ul.appendChild(li);
-
       total++; if(cb.checked) checked++;
     });
 
-    // Add custom item UI
     const addRow = document.createElement('div'); addRow.className='add-row';
     const addInput = document.createElement('input'); addInput.placeholder = 'Add custom item to "'+block.section+'"…';
     const addBtn = document.createElement('button'); addBtn.textContent = 'Add';
     addBtn.addEventListener('click',()=>{
       const val = addInput.value.trim(); if(!val) return;
-      // if hpOnly checked, assume added item is high‑protein; else normal
-      const newItem = hpOnly ? {name:val, hp:true} : val;
-      block.items.push(newItem); addInput.value=''; render();
+      const newItem = hpOnly ? {name:val, hp:true} : val; block.items.push(newItem); addInput.value=''; render();
     });
     addRow.appendChild(addInput); addRow.appendChild(addBtn);
 
-    itemsDiv.appendChild(ul);
-    itemsDiv.appendChild(addRow);
-
-    details.appendChild(summary);
-    details.appendChild(itemsDiv);
-    sec.appendChild(details);
+    itemsDiv.appendChild(ul); itemsDiv.appendChild(addRow);
+    details.appendChild(summary); details.appendChild(itemsDiv); sec.appendChild(details);
     container.appendChild(sec);
   });
 
-  // Progress
   document.getElementById('progress').textContent = `${checked} of ${total} checked`;
 }
 
 function updateProgress(){
-  const cbs = [...document.querySelectorAll('input[type=checkbox]')].filter(el=>el.offsetParent!==null);
+  const cbs = Array.from(document.querySelectorAll('input[type=checkbox]')).filter(el=>el.offsetParent!==null);
   const total = cbs.length; const checked = cbs.filter(c=>c.checked).length;
   document.getElementById('progress').textContent = `${checked} of ${total} checked`;
 }
 
-// Toolbar events
 ['search','filter','hpOnly','hpHighlight'].forEach(id=>{
   document.getElementById(id).addEventListener('input', render);
 });
 
-document.getElementById('expandAll').addEventListener('click',()=>{
-  document.querySelectorAll('details').forEach(d=>d.open=true);
-});
+document.getElementById('expandAll').addEventListener('click',()=>{ document.querySelectorAll('details').forEach(d=>d.open=true); });
 
-document.getElementById('collapseAll').addEventListener('click',()=>{
-  document.querySelectorAll('details').forEach(d=>d.open=false);
-});
+document.getElementById('collapseAll').addEventListener('click',()=>{ document.querySelectorAll('details').forEach(d=>d.open=false); });
 
 document.getElementById('checkAll').addEventListener('click',()=>{
-  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{
-    if(cb.offsetParent!==null){ cb.checked=true; const id=cb.dataset.id; state[id]=state[id]||{}; state[id].checked=true; }
-  }); saveState(state); updateProgress();
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{ if(cb.offsetParent!==null){ cb.checked=true; const id=cb.dataset.id; state[id]=state[id]||{}; state[id].checked=true; } }); saveState(state); updateProgress();
 });
 
 document.getElementById('uncheckAll').addEventListener('click',()=>{
-  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{
-    if(cb.offsetParent!==null){ cb.checked=false; const id=cb.dataset.id; state[id]=state[id]||{}; state[id].checked=false; }
-  }); saveState(state); updateProgress();
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{ if(cb.offsetParent!==null){ cb.checked=false; const id=cb.dataset.id; state[id]=state[id]||{}; state[id].checked=false; } }); saveState(state); updateProgress();
 });
 
 document.getElementById('reset').addEventListener('click',()=>{
-  if(confirm('This will clear all saved progress on this device. Continue?')){
-    localStorage.removeItem(STORAGE_KEY); location.reload();
-  }
+  if(!HAS_STORAGE){ location.reload(); return; }
+  if(confirm('This will clear all saved progress on this device. Continue?')){ localStorage.removeItem(STORAGE_KEY); location.reload(); }
 });
 
 document.getElementById('export').addEventListener('click',()=>{
   const blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download='college_checklist_progress_hp.json'; a.click();
-  URL.revokeObjectURL(url);
+  const a = document.createElement('a'); a.href=url; a.download='college_checklist_progress_hp.json'; a.click(); URL.revokeObjectURL(url);
 });
 
 document.getElementById('import').addEventListener('change',(e)=>{
-  const file = e.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try{
-      const obj = JSON.parse(reader.result);
-      Object.assign(state, obj);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      render();
-    }catch(err){ alert('Invalid file'); }
-  };
-  reader.readAsText(file);
+  const file = e.target.files[0]; if(!file) return; const reader = new FileReader();
+  reader.onload = () => { try{ const obj = JSON.parse(reader.result); Object.assign(state, obj); saveState(state); render(); }catch(err){ alert('Invalid file'); } }; reader.readAsText(file);
 });
 
 render();
